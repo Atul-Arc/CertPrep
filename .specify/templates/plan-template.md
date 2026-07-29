@@ -42,6 +42,8 @@
 
 [Gates determined based on constitution file]
 
+**Project Constraints (CretPrep)**: This repository's constitution requires a frontend-only architecture using React + TypeScript. Plans that propose backend services, server-side databases, or persistent server APIs MUST be rejected unless the specification documents a formal exception and an approved migration plan. All data persistence MUST be local-first browser storage (IndexedDB, localStorage, or equivalent) or ephemeral in-memory state, except for AI LLM calls which are external provider network calls.
+
 ## Project Structure
 
 ### Documentation (this feature)

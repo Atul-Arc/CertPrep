@@ -129,3 +129,9 @@
 - [Assumption about scope boundaries, e.g., "Mobile support is out of scope for v1"]
 - [Assumption about data/environment, e.g., "Existing authentication system will be reused"]
 - [Dependency on existing system/service, e.g., "Requires access to the existing user profile API"]
+
+## Architecture Constraints (CretPrep)
+
+- **ARCH-001**: The project MUST be frontend-only. No backend APIs or server-side databases are permitted except for network calls to AI LLM providers. Any deviation requires a documented exception and governance approval.
+- **ARCH-002**: Primary implementation stack MUST be React + TypeScript. Other stacks MAY be considered only for tooling or build-time scripts and MUST NOT be used for runtime business logic.
+- **ARCH-003**: Data persistence for application state MUST be local-first using browser storage (IndexedDB, localStorage, or equivalent). Sending or storing user data externally MUST be minimized and justified.

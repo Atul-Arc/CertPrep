@@ -63,12 +63,14 @@ description: "Task list template for feature implementation"
 
 Examples of foundational tasks (adjust based on your project):
 
-- [ ] T004 Setup database schema and migrations framework
-- [ ] T005 [P] Implement authentication/authorization framework
-- [ ] T006 [P] Setup API routing and middleware structure
-- [ ] T007 Create base models/entities that all stories depend on
-- [ ] T008 Configure error handling and logging infrastructure
-- [ ] T009 Setup environment configuration management
+- [ ] T004 Initialize frontend project (React + TypeScript) with monorepo or single-app layout
+- [ ] T005 [P] Configure linting, formatting, and pre-commit hooks (ESLint, Prettier, Husky)
+- [ ] T006 [P] Establish CI pipeline for build, type-check, lint, and test
+- [ ] T007 Create design system and reusable component library (tokens, primitives, docs)
+- [ ] T008 Implement AI provider abstraction layer and mock adapters for local testing
+- [ ] T009 Define local-first storage strategy (IndexedDB/localStorage) and privacy guidelines
+- [ ] T010 Configure accessibility (a11y) tooling and performance budgets
+- [ ] T011 Add automated checks for AI response validation and schema conformance
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
