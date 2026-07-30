@@ -35,7 +35,7 @@ description: "Generated task list for 001-cretprep-mock-exams (CretPrep)"
 
 **Goal**: Upload a PDF, generate N multiple-choice questions, and take the exam one-question-at-a-time.
 
-**Independent Test**: Upload a sample PDF, request 10 questions, generate an exam, complete the exam, and view results.
+(Acceptance criteria below describe the expected observable behavior for the implemented user story.)
 
 - [ ] T012 [US1] Create document upload feature UI and components: `src/features/document-upload/components/UploadDropzone.tsx`, `src/features/document-upload/components/DocumentPreview.tsx`
 - [ ] T013 [US1] Implement document text extraction integration using `src/services/pdf/index.ts` and wire to upload UI (`src/features/document-upload/service.ts`)
@@ -51,7 +51,7 @@ description: "Generated task list for 001-cretprep-mock-exams (CretPrep)"
 
 **Goal**: Verify AI JSON against strict schema and surface actionable UI on validation failures.
 
-**Independent Test**: Inject malformed AI JSON in test harness and verify validation UI with retry/regenerate.
+Ensure the UI displays validation errors with retry/regenerate actions when AI JSON fails validation.
 
 - [ ] T020 [US2] Implement Zod schema for AI exam responses: `src/utils/schema/aiResponse.ts` (detailed schema per plan)
 - [ ] T021 [US2] Implement validation pipeline and error normalization: `src/features/exam-generation/validators.ts`
@@ -63,7 +63,7 @@ description: "Generated task list for 001-cretprep-mock-exams (CretPrep)"
 
 **Goal**: Make AI provider settings configurable via environment variables and ensure adapters honor those values.
 
-**Independent Test**: Start the app with environment overrides and verify network calls use configured endpoint/model.
+Verify the app reads environment overrides and uses the configured endpoint/model for network calls.
 
 - [ ] T024 [US3] Implement environment-driven AI adapter configuration: `src/services/ai/openaiAdapter.ts`, `src/services/ai/index.ts` (use `src/utils/config.ts`)
 - [ ] T025 [US3] Document environment variables and runtime configuration in `docs/quickstart.md` and update `.env.example`

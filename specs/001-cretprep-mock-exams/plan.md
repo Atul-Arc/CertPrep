@@ -150,10 +150,8 @@ public/
 6. User answers questions one-at-a-time → immediate evaluation, locked answers.
 7. After last question → ResultsPage displays score and question-by-question review.
 
-## Testing Strategy
-- Unit tests: prompt builder, Zod schema validators, store slices, adapters (mocked network).
-- Integration tests: component + hook flows using React Testing Library and mocked AI responses.
-- E2E: Playwright/Cypress test: upload sample PDF → generate exam with mocked AI → complete exam → assert results.
+## Testing
+Testing and automated test projects are out-of-scope for the MVP POC. Focus on implementing core functionality and validation; add automated tests later as needed.
 
 ## Risks & Assumptions
 - Assumptions:
@@ -173,6 +171,6 @@ public/
 ## Deliverables & Next Steps
 1. Create this `plan.md` (this file) in the feature folder.
 2. Scaffold project (Vite + React + TypeScript + store) and implement core modules in priority order: document-upload → ai-adapter + validators → exam-player → results.
-3. Add tests and CI for schema validation and E2E mock flows.
+3. Add CI for build, type-check, and lint; postpone adding automated test projects for MVP.
 
 ---

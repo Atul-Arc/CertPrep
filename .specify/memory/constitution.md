@@ -22,7 +22,7 @@ Follow-up TODOs: none
 - The primary implementation stack MUST be React + TypeScript. TypeScript strict mode (`strict`) MUST be enabled in all packages. Build-time or developer tooling MAY use other languages, but runtime business logic and UI MUST be TypeScript/React.
 
 ### 3. Component-Based Architecture
-- The UI MUST be organized as reusable, well-typed components with clear separation of concerns (presentation vs. orchestration). Components MUST be library-ready, documented, and unit-tested.
+- The UI MUST be organized as reusable, well-typed components with clear separation of concerns (presentation vs. orchestration). Components MUST be library-ready, documented, and verified through agreed acceptance checks.
 
 ### 4. AI-First Design
 - Knowledge generation, question-answering, content synthesis, and other domain reasoning MUST be delegated to specialized AI agents. The client UI orchestrates agents and presents validated outputs; it MUST NOT embed domain logic that duplicates agent responsibilities.
@@ -40,7 +40,7 @@ Follow-up TODOs: none
 - EVERY feature MUST begin with a written specification (`specs/[feature]/spec.md`) that includes user stories, acceptance criteria, success metrics, and architecture constraints. No implementation work MAY begin until the specification is reviewed and linked in the implementation branch.
 
 ### 7. Strong Typing and Clean Code
-- Code MUST use explicit types; `any` is DISCOURAGED and MUST be justified in a PR. The project MUST enforce linting, formatting, and type-checking in CI. Code MUST be readable, maintainable, and accompanied by meaningful tests.
+- Code MUST use explicit types; `any` is DISCOURAGED and MUST be justified in a PR. The project MUST enforce linting, formatting, and type-checking in CI. Code MUST be readable, maintainable, and accompanied by verification steps as agreed per feature spec.
 
 ### 8. Reusable UI & Design System
 - The project MUST include a design system with tokens, primitives, and documented components. New visual elements MUST be added to the system rather than duplicated in feature code.
@@ -67,16 +67,16 @@ Follow-up TODOs: none
 - Duplicate or copy-pasted code MUST be refactored into reusable components or utilities. PRs MUST demonstrate rationale for any deviation from reuse.
 
 ## Definition of Done (Feature-level)
-- A feature is NOT done until all of the following pass and are merged:
-	- A reviewed `specs/[feature]/spec.md` exists and is linked from the branch
-	- Type checks pass with `strict` TypeScript settings
-	- Linting and formatting checks pass
-	- Unit tests for new components and agent logic pass (coverage as agreed per spec)
-	- Accessibility audit (automated checks) passes for affected views
-	- AI responses validated against declared schemas with mock provider tests
-	- Provider abstraction has a mocked adapter for CI tests
-	- README and quickstart updated with feature notes
-	- PR has at least one approver (two recommended) and CI green
+- A feature is NOT done until all of the following are completed and merged:
+ 	- A reviewed `specs/[feature]/spec.md` exists and is linked from the branch
+ 	- Type checks pass with `strict` TypeScript settings
+ 	- Linting and formatting checks pass
+ 	- Verification steps for new components and agent logic completed (as agreed per spec)
+ 	- Accessibility audit performed for affected views (automated or manual)
+ 	- AI responses validated against declared schemas; mock provider or manual verification performed as appropriate
+ 	- Provider abstraction has a mocked adapter available for local verification or CI if requested
+ 	- README and quickstart updated with feature notes
+ 	- PR has at least one approver (two recommended) and CI green
 
 ## Governance
 - The constitution supersedes informal conventions. Amendments MUST follow this process:

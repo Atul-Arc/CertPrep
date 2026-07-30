@@ -2,9 +2,9 @@
 description: Generate a custom checklist for the current feature based on user requirements.
 ---
 
-## Checklist Purpose: "Unit Tests for English"
+## Checklist Purpose: "Requirement Verification"
 
-**CRITICAL CONCEPT**: Checklists are **UNIT TESTS FOR REQUIREMENTS WRITING** - they validate the quality, clarity, and completeness of requirements in a given domain.
+**CRITICAL CONCEPT**: Checklists validate the quality, clarity, and completeness of requirements — they serve as a verification checklist for written specifications.
 
 **NOT for verification/testing**:
 
@@ -21,7 +21,7 @@ description: Generate a custom checklist for the current feature based on user r
 - ✅ "Are accessibility requirements defined for keyboard navigation?" (coverage)
 - ✅ "Does the spec define what happens when logo image fails to load?" (edge cases)
 
-**Metaphor**: If your spec is code written in English, the checklist is its unit test suite. You're testing whether the requirements are well-written, complete, unambiguous, and ready for implementation - NOT whether the implementation works.
+**Metaphor**: If your spec is code written in English, the checklist acts as its verification suite. You're checking whether the requirements are well-written, complete, unambiguous, and ready for implementation — NOT whether the implementation works.
 
 ## User Input
 
@@ -123,7 +123,7 @@ You **MUST** consider the user input before proceeding (if not empty).
    - Use progressive disclosure: add follow-on retrieval only if gaps detected
    - If source docs are large, generate interim summary items instead of embedding raw text
 
-6. **Generate checklist** - Create "Unit Tests for Requirements":
+6. **Generate checklist** - Create "Requirement Verification" checklist:
    - Create `FEATURE_DIR/checklists/` directory if it doesn't exist
    - Generate unique checklist filename:
      - Use short, descriptive name based on domain (e.g., `ux.md`, `api.md`, `security.md`)
@@ -152,7 +152,7 @@ You **MUST** consider the user input before proceeding (if not empty).
    - **Dependencies & Assumptions** (Are they documented and validated?)
    - **Ambiguities & Conflicts** (What needs clarification?)
 
-   **HOW TO WRITE CHECKLIST ITEMS - "Unit Tests for English"**:
+  **HOW TO WRITE CHECKLIST ITEMS - "Verification for Requirements"**:
 
    ❌ **WRONG** (Testing implementation):
    - "Verify landing page displays 3 episode cards"

@@ -8,7 +8,7 @@
 
 **Input**: User description: "Build a web app called CretPrep that generates AI-powered mock certification exams from study material. The user uploads a certification study guide PDF (processed in-memory only, no storage) and chooses how many questions to generate (e.g., 10, 20, 50, or custom). The uploaded document is the only knowledge source for generating the exam. The AI should return structured JSON containing: Exam title; Requested number of multiple-choice questions; Four options per question; Correct answer; Optional explanation. The app should validate the AI response before rendering. The exam experience should resemble a real certification exam: Show one question at a time; Four answer options; Previous/Next navigation; Question indicator (e.g., 3/10); Immediate evaluation after answer selection; Highlight the correct answer; Update the score; Prevent changing an answered question. After the exam, display a results page with: Final score and percentage; Correct vs. incorrect count; Review of every question with the user's answer, correct answer, and explanation (if available). The application does not require authentication or a database. All data exists only during the current session. AI provider settings (API key, endpoint, model, etc.) must be configurable through environment variables. The solution should be robust, user-friendly, and easily extensible to support additional document types and future exam modes."
 
-## User Scenarios & Testing *(mandatory)*
+## User Scenarios *(mandatory)*
 
 ### User Story 1 - Generate and take an exam (Priority: P1)
 
@@ -16,7 +16,7 @@ As a candidate preparing for a certification, I want to upload my study guide PD
 
 **Why this priority**: Core product value—creates and delivers the mock exam experience from user-provided material.
 
-**Independent Test**: Upload a PDF, request 10 questions, verify exam is generated from the uploaded doc, and take the exam end-to-end producing a results page.
+(Acceptance criteria described below cover the expected observable behavior for the user flow.)
 
 **Acceptance Scenarios**:
 
@@ -33,7 +33,7 @@ As a product owner, I want the app to verify the AI's structured JSON response t
 
 **Why this priority**: Safety and reliability—protects user experience from hallucinated or malformed AI outputs.
 
-**Independent Test**: Provide a malformed AI response in a test harness and verify the UI shows a validation error with actionable guidance (retry, regenerate, adjust input).
+The system must surface validation errors with actionable guidance (retry, regenerate, adjust input) when AI responses are malformed.
 
 **Acceptance Scenarios**:
 
@@ -48,7 +48,7 @@ As an integrator, I want AI settings (API key, endpoint, model) configurable thr
 
 **Why this priority**: Deployment flexibility and security—keeps secrets out of source and supports multiple providers.
 
-**Independent Test**: Start the app with environment variables set and confirm the app uses those values to call the configured AI endpoint.
+Verify the app reads AI configuration from environment variables at runtime and uses those values for API calls.
 
 **Acceptance Scenarios**:
 
