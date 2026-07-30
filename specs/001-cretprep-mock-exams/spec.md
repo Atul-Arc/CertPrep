@@ -66,7 +66,7 @@ Verify the app reads AI configuration from environment variables at runtime and 
 
 ### Functional Requirements
 
-- **FR-001**: System MUST accept a PDF upload and process it in-memory only; no file storage or persistence is allowed.
+- **FR-001**: System MUST accept a PDF upload and process it in-memory only; no server-side persistent storage is allowed. Client-side ephemeral storage (for example, `sessionStorage` or in-memory only) MAY be used solely to improve page-refresh resilience. Any use of client-side ephemeral storage MUST be documented, default to disabled, provide a clear Time-To-Live (TTL) or explicit user-consent opt-in, and be cleared when the session ends. Any storage beyond client-side ephemeral storage (including server-side proxies that persist user content) is prohibited unless a documented constitution exception is granted.
 - **FR-002**: System MUST allow the user to choose the number of questions to generate (predefined choices 10/20/50 and a custom numeric input).
 - **FR-003**: System MUST send the extracted document content as the sole knowledge source to the AI prompt; no external knowledge sources may be used for generation.
 - **FR-004**: The AI must return structured JSON with: Exam title, requested question count, questions array; each question includes text, four options, correct answer index/identifier, and optional explanation.
@@ -74,7 +74,7 @@ Verify the app reads AI configuration from environment variables at runtime and 
 - **FR-006**: The exam UI MUST present one question at a time with four options, navigation (Previous/Next), and a question progress indicator (e.g., 3/10).
 - **FR-007**: On answer selection, the UI MUST evaluate the answer immediately, highlight the correct answer, lock the question from further changes, and update the session score.
 - **FR-008**: The results page MUST show final score, percentage, counts of correct and incorrect answers, and allow review of each question with the user's answer, correct answer, and explanation if available.
-- **FR-009**: System MUST keep all exam state client-side in memory for the session; optionally persist temporarily using browser storage for page refresh resilience only (document this behavior clearly).
+- **FR-009**: System MUST keep all exam state client-side in memory for the session. Optionally, the system MAY persist ephemeral state to browser storage (e.g., `sessionStorage` or IndexedDB) strictly for page-refresh resilience; this behavior MUST be documented, default to disabled, include a TTL or explicit user opt-in, and ensure data is cleared on session end. Persistence that exposes user content outside the client (server-side storage or long-lived proxies) is not permitted without a constitution exception.
 - **FR-010**: No authentication or database is required or provided in v1.
 - **FR-011**: AI provider settings (API key, endpoint, model, timeout) MUST be configurable via environment variables.
 - **FR-012**: The app MUST provide clear UX for errors from AI or document parsing with actionable next steps.

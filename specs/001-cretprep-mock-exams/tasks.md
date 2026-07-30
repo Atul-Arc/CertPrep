@@ -76,6 +76,12 @@ Verify the app reads environment overrides and uses the configured endpoint/mode
 - [ ] T027 [P] Accessibility and keyboard navigation fixes for core flows: update components under `src/components/` and relevant feature components
 - [ ] T028 Code cleanup, docs, and release checklist: update `README.md`, `docs/quickstart.md`, and add `CHANGELOG.md`
 
+- [ ] T029 [P] Create agent artifact documents: add `specs/001-cretprep-mock-exams/agents.md` with agent role/input/output/error schemas (required by constitution)
+- [ ] T030 Implement prompt-tuning & validation harness: add scripts/tests to measure schema validation pass-rate and support prompt iteration (`tools/validation/`)
+- [ ] T031 Performance benchmarking and sampling: add scripts/tests to measure generation latency for documents up to 50 pages and implement page-sampling/limits in extraction service
+- [ ] T032 Enforce TypeScript `strict` and CI type-check: update `tsconfig.json` and `.github/workflows/ci.yml` to run `tsc --noEmit` with `strict` enabled
+- [ ] T033 Document constitution-exception process and update `plan.md`/`spec.md` with approval trace guidance for any proxy usage
+
 ---
 
 ## Dependencies & Execution Order

@@ -1,7 +1,7 @@
 # Implementation Plan: CretPrep — AI Mock Exam Generator
 
 ## Overview
-CretPrep is a frontend-only single-page application (SPA) that generates AI-powered mock certification exams from an uploaded study-guide PDF processed in-memory. This plan defines a clean, modular, and scalable React + TypeScript architecture that keeps business logic separate from presentation, validates AI JSON responses with strict schemas, and requires no backend for v1 (an optional short-lived serverless proxy is documented).
+CretPrep is a frontend-only single-page application (SPA) that generates AI-powered mock certification exams from an uploaded study-guide PDF processed in-memory. This plan defines a clean, modular, and scalable React + TypeScript architecture that keeps business logic separate from presentation, validates AI JSON responses with strict schemas, and requires no backend for v1. If a provider's CORS or security constraints make direct client calls impossible, an intermediary proxy MAY only be considered after obtaining a documented constitution exception and approval; the default implementation approach is client-only.
 
 ## Goals
 - Deliver an end-to-end frontend implementation that: accepts a PDF (in-memory), extracts text, requests structured exam JSON from an AI provider, validates the response, and presents an exam experience that mimics certification test flows.
@@ -165,7 +165,7 @@ Testing and automated test projects are out-of-scope for the MVP POC. Focus on i
 
 ## Future Extensibility
 - Add provider plugins by implementing `IAiProvider` adapters.
-- Add serverless proxy template for providers with restrictive CORS.
+- Document a provider-exception and proxy-approval pattern (constitution exception) to guide implementers if a proxy becomes necessary.
 - Add exam modes (timed, sections), more doc types (DOCX, Markdown), and telemetry hooks.
 
 ## Deliverables & Next Steps
