@@ -13,6 +13,9 @@ description: "Generated task list for 001-cretprep-mock-exams (CretPrep)"
 - [ ] T001 Initialize repository with React + TypeScript (Vite) and basic scripts — create `package.json`, `vite.config.ts`, `tsconfig.json`
 - [ ] T002 Create initial folder layout and starter files under `src/` per implementation plan (`src/App.tsx`, `src/main.tsx`, `src/index.css`)
 - [ ] T003 [P] Add environment example and docs: `.env.example` and `README.md` in repo root
+ - [X] T001 Initialize repository with React + TypeScript (Vite) and basic scripts — create `package.json`, `vite.config.ts`, `tsconfig.json`
+ - [X] T002 Create initial folder layout and starter files under `src/` per implementation plan (`src/App.tsx`, `src/main.tsx`, `src/index.css`)
+ - [X] T003 [P] Add environment example and docs: `.env.example` and `README.md` in repo root
 
 ---
 
@@ -28,6 +31,14 @@ description: "Generated task list for 001-cretprep-mock-exams (CretPrep)"
 - [ ] T009 Create lightweight state store with Zustand and slices: `src/state/store.ts`, `src/state/slices/generationSlice.ts`, `src/state/slices/examSlice.ts`
 - [ ] T010 [P] Add basic UI primitives and design tokens: `src/components/ui/Button.tsx`, `src/components/ui/Modal.tsx`, `src/components/ui/Toast.tsx`
 - [ ] T011 Add `env.example` and config loader utility: `src/utils/config.ts` (read VITE_AI_API_KEY, VITE_AI_ENDPOINT, VITE_AI_MODEL, VITE_AI_TIMEOUT_MS)
+ - [X] T004 Initialize linting and formatting: add `/.eslintrc.cjs`, `/prettier.config.cjs`, update `package.json` scripts
+ - [X] T005 [P] Add CI workflow skeleton for build, type-check, lint (`.github/workflows/ci.yml`)
+ - [X] T006 Implement AI provider abstraction and mock adapter: `src/services/ai/index.ts`, `src/services/ai/mockAdapter.ts`
+ - [X] T007 [P] Implement Zod-based validation utilities and schema placeholder: `src/utils/schema/aiResponse.ts`
+ - [X] T008 Implement PDF extraction service and worker scaffolding: `src/services/pdf/pdfWorker.ts`, `src/services/pdf/index.ts`
+ - [X] T009 Create lightweight state store with Zustand and slices: `src/state/store.ts`, `src/state/slices/generationSlice.ts`, `src/state/slices/examSlice.ts`
+ - [X] T010 [P] Add basic UI primitives and design tokens: `src/components/ui/Button.tsx`, `src/components/ui/Modal.tsx`, `src/components/ui/Toast.tsx`
+ - [X] T011 Add `env.example` and config loader utility: `src/utils/config.ts` (read VITE_AI_API_KEY, VITE_AI_ENDPOINT, VITE_AI_MODEL, VITE_AI_TIMEOUT_MS)
 
 ---
 
@@ -44,6 +55,13 @@ description: "Generated task list for 001-cretprep-mock-exams (CretPrep)"
 - [ ] T016 [US1] Implement GenerationStatusModal and progress UI: `src/features/exam-generation/components/GenerationStatusModal.tsx`
 - [ ] T017 [US1] Implement exam player UI (single-question flow): `src/features/exam-player/components/QuestionCard.tsx`, `src/features/exam-player/ExamPage.tsx`
 - [ ] T018 [US1] Implement results page and review UI: `src/features/results/ResultsPage.tsx`, `src/features/results/QuestionReviewList.tsx`
+ - [X] T012 [US1] Create document upload feature UI and components: `src/features/document-upload/components/UploadDropzone.tsx`, `src/features/document-upload/components/DocumentPreview.tsx`
+ - [X] T013 [US1] Implement document text extraction integration using `src/services/pdf/index.ts` and wire to upload UI (`src/features/document-upload/service.ts`)
+ - [X] T014 [US1] Create generation settings UI (question count selector) in `src/features/document-upload/components/QuestionSettings.tsx`
+ - [X] T015 [US1] Implement generation flow orchestration: `src/features/exam-generation/service.ts` (compose prompt, call AI adapter, validate response)
+ - [X] T016 [US1] Implement GenerationStatusModal and progress UI: `src/features/exam-generation/components/GenerationStatusModal.tsx`
+ - [X] T017 [US1] Implement exam player UI (single-question flow): `src/features/exam-player/components/QuestionCard.tsx`, `src/features/exam-player/ExamPage.tsx`
+ - [X] T018 [US1] Implement results page and review UI: `src/features/results/ResultsPage.tsx`, `src/features/results/QuestionReviewList.tsx`
 
 ---
 
@@ -56,6 +74,9 @@ Ensure the UI displays validation errors with retry/regenerate actions when AI J
 - [ ] T020 [US2] Implement Zod schema for AI exam responses: `src/utils/schema/aiResponse.ts` (detailed schema per plan)
 - [ ] T021 [US2] Implement validation pipeline and error normalization: `src/features/exam-generation/validators.ts`
 - [ ] T022 [US2] Implement validation error UI and retry/regenerate actions: `src/features/exam-generation/components/ValidationErrorPanel.tsx`
+ - [X] T020 [US2] Implement Zod schema for AI exam responses: `src/utils/schema/aiResponse.ts` (detailed schema per plan)
+ - [X] T021 [US2] Implement validation pipeline and error normalization: `src/features/exam-generation/validators.ts`
+ - [X] T022 [US2] Implement validation error UI and retry/regenerate actions: `src/features/exam-generation/components/ValidationErrorPanel.tsx`
 
 ---
 
@@ -67,6 +88,8 @@ Verify the app reads environment overrides and uses the configured endpoint/mode
 
 - [ ] T024 [US3] Implement environment-driven AI adapter configuration: `src/services/ai/openaiAdapter.ts`, `src/services/ai/index.ts` (use `src/utils/config.ts`)
 - [ ] T025 [US3] Document environment variables and runtime configuration in `docs/quickstart.md` and update `.env.example`
+ - [X] T024 [US3] Implement environment-driven AI adapter configuration: `src/services/ai/openaiAdapter.ts`, `src/services/ai/index.ts` (use `src/utils/config.ts`)
+ - [X] T025 [US3] Document environment variables and runtime configuration in `docs/quickstart.md` and update `.env.example`
 
 
 ---
@@ -75,12 +98,20 @@ Verify the app reads environment overrides and uses the configured endpoint/mode
 
 - [ ] T027 [P] Accessibility and keyboard navigation fixes for core flows: update components under `src/components/` and relevant feature components
 - [ ] T028 Code cleanup, docs, and release checklist: update `README.md`, `docs/quickstart.md`, and add `CHANGELOG.md`
+ - [X] T027 [P] Accessibility and keyboard navigation fixes for core flows: update components under `src/components/` and relevant feature components
 
 - [ ] T029 [P] Create agent artifact documents: add `specs/001-cretprep-mock-exams/agents.md` with agent role/input/output/error schemas (required by constitution)
 - [ ] T030 Implement prompt-tuning & validation harness: add scripts/tests to measure schema validation pass-rate and support prompt iteration (`tools/validation/`)
 - [ ] T031 Performance benchmarking and sampling: add scripts/tests to measure generation latency for documents up to 50 pages and implement page-sampling/limits in extraction service
 - [ ] T032 Enforce TypeScript `strict` and CI type-check: update `tsconfig.json` and `.github/workflows/ci.yml` to run `tsc --noEmit` with `strict` enabled
 - [ ] T033 Document constitution-exception process and update `plan.md`/`spec.md` with approval trace guidance for any proxy usage
+ - [X] T027 [P] Accessibility and keyboard navigation fixes for core flows: update components under `src/components/` and relevant feature components
+ - [X] T028 Code cleanup, docs, and release checklist: update `README.md`, `docs/quickstart.md`, and add `CHANGELOG.md`
+ - [X] T029 [P] Create agent artifact documents: add `specs/001-cretprep-mock-exams/agents.md` with agent role/input/output/error schemas (required by constitution)
+ - [X] T030 Implement prompt-tuning & validation harness: add scripts/tests to measure schema validation pass-rate and support prompt iteration (`tools/validation/`)
+ - [X] T031 Performance benchmarking and sampling: add scripts/tests to measure generation latency for documents up to 50 pages and implement page-sampling/limits in extraction service
+ - [X] T032 Enforce TypeScript `strict` and CI type-check: update `tsconfig.json` and `.github/workflows/ci.yml` to run `tsc --noEmit` with `strict` enabled
+ - [X] T033 Document constitution-exception process and update `plan.md`/`spec.md` with approval trace guidance for any proxy usage
 
 ---
 
