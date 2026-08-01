@@ -129,3 +129,26 @@ Verify the app reads environment overrides and uses the configured endpoint/mode
 - Tasks per story: US1=8, US2=4, US3=3 (rest are setup/foundational/polish)
 - Suggested MVP scope: Complete Phase 1 + Phase 2 + Phase 3 (User Story 1) — enough to demo core flow.
 - Validation: All tasks follow checklist format with Task IDs, optional `[P]` markers, and `[USx]` story labels where required.
+
+---
+
+## Phase 6: Convergence
+
+- [X] T036 Wrap `extractTextFromPdf` in a try/catch inside `UploadDropzone.onGenerate`; show an actionable error message (e.g., scanned-PDF guidance) on failure per FR-012 / edge-cases (partial)
+- [X] T037 Surface a visible user warning (Toast or inline notice) when document text is truncated before AI generation per FR-012 / edge-cases (partial)
+- [X] T038 Create `.env.example` at repo root with all `VITE_AI_*` variables and descriptions per plan: env.example / FR-011 (missing)
+- [X] T039 Expand `README.md` with architecture overview, AI provider swap guide, agent role definitions, and Definition of Done checklist per Constitution §14 / plan: README (partial)
+- [X] T042 Add a lint step to `.github/workflows/ci.yml` per plan / T004 (partial)
+
+---
+
+## Phase 7: Convergence
+
+Actionable findings from code review: the AI response Zod schema in `src/utils/schema/aiResponse.ts` does not fully enforce the structured constraints required by the specification (exactly 4 options per question, `questionCount` matching the questions array length, and `correctIndex` bounds). Add remediation tasks below.
+
+- [ ] T043 Enforce exactly 4 options per question in `src/utils/schema/aiResponse.ts` per FR-004 (partial)
+- [ ] T044 Validate that `questionCount` equals the number of `questions` in `src/utils/schema/aiResponse.ts` per FR-004 / US2 (partial)
+- [ ] T045 Ensure `correctIndex` is within the range `0..options.length-1` in `src/utils/schema/aiResponse.ts` and add unit tests for validation failures per FR-004 / US2 (partial)
+ - [X] T043 Enforce exactly 4 options per question in `src/utils/schema/aiResponse.ts` per FR-004 (partial)
+ - [ ] T044 Validate that `questionCount` equals the number of `questions` in `src/utils/schema/aiResponse.ts` per FR-004 / US2 (partial)
+ - [X] T045 Ensure `correctIndex` is within the range `0..options.length-1` in `src/utils/schema/aiResponse.ts` and add unit tests for validation failures per FR-004 / US2 (partial)

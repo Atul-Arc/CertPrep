@@ -87,7 +87,7 @@ public/
 
 ## Component Hierarchy (pages & key components)
 - App
-  - UploadPage (`features/document-upload`) — `UploadDropzone`, `DocumentPreview`, `QuestionSettings`, `GenerateButton`
+  - UploadPage (`features/document-upload`) — `UploadDropzone`, `QuestionSettings`, `GenerateButton`
   - GenerationStatusModal — progress and trace logs
   - ExamPage (`features/exam-player`) — `QuestionHeader`, `QuestionCard`, `OptionButton`, `NavigationBar`
   - ResultsPage (`features/results`) — `ScoreSummary`, `QuestionReviewList`
@@ -99,9 +99,9 @@ public/
 - Services: pure side-effect implementations (network, pdf extraction) returning typed results.
 
 ## State Management
-- Use Zustand for a minimal, typed global store. Structure store as small slices:
-  - `generationSlice`: generation status, raw AI response, validation errors
-  - `examSlice`: `Exam` model, currentQuestionIndex, answers[], score
+- Use Zustand for a minimal, typed global store. Generation and exam state are maintained together in `store.ts` or separate slice files as convenient:
+  - generation state: status, raw AI response, validation errors
+  - `examSlice`: `Exam` model, answers[], score
   - `uiSlice`: modals, toasts, transient UI flags
 - Persist snapshot to `sessionStorage` optionally (feature-flagged) for page refresh resilience.
 - Inject store into components via hooks: `useExamStore()`, `useGenerationStore()`.

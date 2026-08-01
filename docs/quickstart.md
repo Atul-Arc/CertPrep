@@ -1,6 +1,6 @@
 # Quickstart
 
-This project is a frontend SPA that generates mock exams from uploaded PDFs.
+CertPrep is an AI-powered practice exam generator for learners preparing for professional certifications and academic exams (AWS, Azure, GCP, CompTIA, PMP, PRINCE2, and more). Upload any PDF study guide or text document and CertPrep generates targeted multiple-choice practice questions using AI, then walks you through a realistic exam experience with scoring and per-question review.
 
 Environment variables (place in `.env` during development):
 

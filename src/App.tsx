@@ -3,6 +3,7 @@ import UploadDropzone from './features/document-upload/components/UploadDropzone
 import ExamPage from './features/exam-player/ExamPage'
 import ResultsPage from './features/results/ResultsPage'
 import GenerationStatusModal from './features/exam-generation/components/GenerationStatusModal'
+import Footer from './components/Footer'
 import { useGenerationStore } from './state/store'
 
 const VIEW_LABEL: Record<string, string> = {
@@ -16,7 +17,7 @@ export default function App() {
   const status = useGenerationStore((s) => s.status)
 
   return (
-    <>
+    <div className="app-root">
       <header className="app-header">
         <span className="app-header__logo">CertPrep</span>
         <span className="app-header__sub">AI Mock Exam Generator</span>
@@ -36,6 +37,8 @@ export default function App() {
       </main>
 
       {(status === 'running' || status === 'failed') && <GenerationStatusModal />}
-    </>
+
+      <Footer />
+    </div>
   )
 }

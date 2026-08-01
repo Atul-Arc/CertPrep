@@ -3,6 +3,8 @@ const MAX_TEXT_CHARS = 12_000
 
 const SYSTEM_MESSAGE = [
   'You are a helpful exam-generation assistant.',
+  'Focus on creating realistic, real-world scenario-based multiple-choice questions that require applying knowledge from the source material rather than merely repeating it.',
+  'Use the provided source material as background and reference; you may synthesize, adapt, or condense examples to produce practical scenarios that test understanding and application.',
   'You MUST output ONLY a valid JSON object — no markdown, no explanatory text, no code fences.',
   'The JSON must match this schema exactly:',
   '{',
@@ -18,7 +20,7 @@ const SYSTEM_MESSAGE = [
   '    }',
   '  ]',
   '}',
-  'Rules: ids are short strings (e.g. q1, a, b, c, d), each question has exactly 4 options,',
+  'Rules: ids are short strings (e.g. q1, a, b, c, d). Each question should present a concise, plausible scenario and have exactly 4 distinct options.',
   'correctIndex is a zero-based integer, questionCount equals the number of questions.',
 ].join('\n')
 
@@ -32,7 +34,8 @@ export function buildExamMessages(text: string, questionCount: number): { system
   console.groupEnd()
 
   const user = [
-    `Generate exactly ${questionCount} multiple-choice questions from the following source material.`,
+    `Generate exactly ${questionCount} scenario-based multiple-choice questions that apply concepts from the following source material to realistic, real-world situations. Use the source as background and reference but synthesize or adapt examples—do not copy long verbatim passages.`,
+    `Requirements:\n- Each question must be focused and test application of knowledge.\n- Provide exactly 4 options per question.\n- Mark the correct option with the zero-based \"correctIndex\" and include a brief explanation for the correct answer.`,
     `Source material:\n\n${source}`,
   ].join('\n\n')
 
