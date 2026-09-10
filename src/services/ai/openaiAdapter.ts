@@ -17,7 +17,7 @@ export default class OpenAIAdapter implements IAiProvider {
         { role: 'user', content: user },
       ],
       response_format: { type: 'json_object' },
-      max_tokens: 4000,
+      max_tokens: this.cfg.tokenLimit,
     }
 
     console.group('[CertPrep] AI request')
@@ -30,14 +30,29 @@ export default class OpenAIAdapter implements IAiProvider {
     const endpoint = this.cfg.endpoint
     if (!endpoint) throw new Error('AI endpoint not configured')
 
-    const res = await fetch(endpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        ...(this.cfg.apiKey ? { Authorization: `Bearer ${this.cfg.apiKey}` } : {}),
-      },
-      body: JSON.stringify(payload),
-    })
+    const controller = new AbortController()
+    const timeoutMs = Math.max(1000, Number(this.cfg.timeoutMs) || 30000)
+    const timeoutHandle = setTimeout(() => controller.abort(), timeoutMs)
+
+    let res: Response
+    try {
+      res = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(this.cfg.apiKey ? { Authorization: `Bearer ${this.cfg.apiKey}` } : {}),
+        },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+      })
+    } catch (err: any) {
+      if (err?.name === 'AbortError') {
+        throw new Error(`Request timed out after ${timeoutMs}ms. Please retry with a smaller file or fewer questions.`)
+      }
+      throw err
+    } finally {
+      clearTimeout(timeoutHandle)
+    }
 
     if (!res.ok) {
       const errText = await res.text().catch(() => '')

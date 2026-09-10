@@ -3,8 +3,14 @@ import Button from '../../../components/ui/Button'
 import QuestionSettings from './QuestionSettings'
 import { extractTextFromPdf } from '../../../services/pdf'
 import { generateExam } from '../../exam-generation/service'
+import { getConfig } from '../../../utils/config'
 
-const TRUNCATION_THRESHOLD = 12_000
+const cfg = getConfig()
+const TRUNCATION_THRESHOLD = cfg.maxInputChars
+const MAX_UPLOAD_BYTES = cfg.maxUploadBytes
+const PROVIDER_TOKEN_LIMIT = cfg.tokenLimit
+const MAX_UPLOAD_KB = Math.ceil(MAX_UPLOAD_BYTES / 1024)
+const MAX_UPLOAD_LABEL = MAX_UPLOAD_BYTES < 1024 * 1024 ? '< 1 MB' : `${(MAX_UPLOAD_BYTES / (1024 * 1024)).toFixed(1)} MB`
 
 export default function UploadDropzone({ onGenerated }: { onGenerated?: () => void }) {
   const fileRef = useRef<HTMLInputElement | null>(null)
@@ -42,6 +48,12 @@ export default function UploadDropzone({ onGenerated }: { onGenerated?: () => vo
       return
     }
 
+    // Enforce upload size limit and show helpful error
+    if (f.size > MAX_UPLOAD_BYTES) {
+      setExtractError(`File is too large. Maximum allowed file size is ${MAX_UPLOAD_LABEL} (${MAX_UPLOAD_KB} KB).`)
+      return
+    }
+
     if (questionCount <= 0) {
       setQuestionCountError('Question count must be greater than 0')
       return
@@ -72,14 +84,15 @@ export default function UploadDropzone({ onGenerated }: { onGenerated?: () => vo
       <div style={{ display: 'grid', gap: 12 }}>
         <div>
           <p style={{ margin: '0 0 10px', fontSize: '0.95rem', color: 'var(--muted)', lineHeight: 1.6 }}>
-            <strong>CertPrep</strong> is an AI-powered tool that generates practice questions from your study materials. Upload a PDF file, and we'll create questions to help you prepare for your exams.
+            <strong>CertPrep</strong> is an AI-powered tool that generates practice questions from your study materials. Upload a PDF file, and we&apos;ll create questions to help you prepare for your exams.
           </p>
         </div>
         <hr style={{ border: 'none', borderTop: '1px solid var(--border)', margin: '4px 0' }} />
         <div>
           <h2 style={{ margin: '0 0 4px', fontSize: '0.95rem' }}>Upload Study Document</h2>
           <p style={{ margin: 0, color: 'var(--muted)', fontSize: '0.875rem' }}>
-            Upload a PDF file and we'll generate practice questions.
+            Upload a PDF file and we&apos;ll generate practice questions.
+            Limits: file size {MAX_UPLOAD_LABEL} ({MAX_UPLOAD_KB} KB max), AI output {PROVIDER_TOKEN_LIMIT.toLocaleString()} tokens.
           </p>
         </div>
       </div>
@@ -127,7 +140,7 @@ export default function UploadDropzone({ onGenerated }: { onGenerated?: () => vo
 
         {truncationWarning && (
           <div style={{ padding: '8px 12px', borderRadius: 6, background: '#fffbeb', border: '1px solid #fcd34d', fontSize: '0.875rem', color: '#92400e' }}>
-            ⚠ Document is large — only the first ~12,000 characters will be sent to the AI. Questions will be based on that portion of the material.
+            ⚠ Document is large — only the first ~{Math.round(TRUNCATION_THRESHOLD).toLocaleString()} characters will be sent to the AI. Questions will be based on that portion of the material.
           </div>
         )}
       </div>

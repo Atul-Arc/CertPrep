@@ -3,7 +3,7 @@ import { create } from 'zustand'
 type GenerationState = {
   status: 'idle' | 'running' | 'succeeded' | 'failed'
   error?: string | null
-  errorType?: 'validation' | 'network' | 'rate' | 'server' | 'unknown' | null
+  errorType?: 'validation' | 'network' | 'rate' | 'server' | 'timeout' | 'unknown' | null
   lastText?: string | null
   lastQuestionCount?: number | null
   setStatus: (s: GenerationState['status']) => void

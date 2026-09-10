@@ -9,5 +9,14 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: { ecmaVersion: 2021, sourceType: 'module', ecmaFeatures: { jsx: true } },
   plugins: ['react', '@typescript-eslint'],
-  rules: {},
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+  rules: {
+    'react/prop-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+  },
 }

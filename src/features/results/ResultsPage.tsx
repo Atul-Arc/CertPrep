@@ -20,13 +20,13 @@ export default function ResultsPage({ onBack }: { onBack?: () => void }) {
   }
 
   return (
-    <div style={{ display: 'grid', gap: 24 }}>
+    <div style={{ display: 'grid', gap: 16 }}>
       <div>
         <h2 style={{ margin: '0 0 4px', fontSize: '1.2rem' }}>Exam Complete</h2>
-        <p style={{ margin: 0, color: 'var(--muted)', fontSize: '0.875rem' }}>Here's how you did.</p>
+        <p style={{ margin: 0, color: 'var(--muted)', fontSize: '0.875rem' }}>Here&apos;s how you did.</p>
       </div>
 
-      <div className="card" style={{ padding: '28px 24px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, textAlign: 'center' }}>
+      <div className="card" style={{ padding: '18px 14px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10, textAlign: 'center' }}>
         <div>
           <div style={{ fontSize: '2.5rem', fontWeight: 700, color: scoreColor }}>{pct}%</div>
           <div style={{ color: 'var(--muted)', fontSize: '0.85rem', marginTop: 4 }}>Score</div>
@@ -41,7 +41,7 @@ export default function ResultsPage({ onBack }: { onBack?: () => void }) {
         </div>
       </div>
 
-      <div className="card" style={{ padding: '12px 20px', background: passed ? '#f0fdf4' : '#fff1f2', border: `1px solid ${passed ? '#86efac' : '#fca5a5'}` }}>
+      <div className="card" style={{ padding: '10px 14px', background: passed ? '#f0fdf4' : '#fff1f2', border: `1px solid ${passed ? '#86efac' : '#fca5a5'}` }}>
         <span style={{ fontWeight: 600, color: passed ? '#15803d' : '#b91c1c', fontSize: '0.9rem' }}>
           {passed ? '✓ PASSED — well done!' : '✗ NOT PASSED — keep studying and try again.'}
         </span>

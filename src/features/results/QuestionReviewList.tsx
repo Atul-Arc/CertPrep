@@ -8,7 +8,7 @@ interface Props {
 
 export default function QuestionReviewList({ questions, answers }: Props) {
   return (
-    <div style={{ display: 'grid', gap: 16 }}>
+    <div style={{ display: 'grid', gap: 10 }}>
       {questions.map((q, i) => {
         const userAnswer = answers[i]
         const isCorrect = userAnswer === q.correctIndex
@@ -19,7 +19,7 @@ export default function QuestionReviewList({ questions, answers }: Props) {
           <div
             key={q.id}
             className="card"
-            style={{ borderLeft: `4px solid ${borderColor}`, background: bgColor, padding: '16px 20px' }}
+            style={{ borderLeft: `4px solid ${borderColor}`, background: bgColor, padding: '12px 14px' }}
           >
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: 10 }}>
               <span style={{
@@ -43,7 +43,7 @@ export default function QuestionReviewList({ questions, answers }: Props) {
               </p>
             </div>
 
-            <div style={{ paddingLeft: 32, display: 'grid', gap: 4, fontSize: '0.875rem' }}>
+            <div style={{ paddingLeft: 8, display: 'grid', gap: 4, fontSize: '0.875rem' }}>
               {q.options.map((opt, j) => {
                 const isUserPick = j === userAnswer
                 const isRight = j === q.correctIndex
@@ -70,7 +70,7 @@ export default function QuestionReviewList({ questions, answers }: Props) {
             {q.explanation && (
               <div style={{
                 marginTop: 10,
-                paddingLeft: 32,
+                paddingLeft: 8,
                 fontSize: '0.8rem',
                 color: 'var(--muted)',
                 lineHeight: 1.5,

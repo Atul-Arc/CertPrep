@@ -5,15 +5,14 @@ import ValidationErrorPanel from './ValidationErrorPanel'
 
 export default function GenerationStatusModal() {
   const status = useGenerationStore((s) => s.status)
-  const error = useGenerationStore((s) => s.error)
 
   if (status === 'failed') return <ValidationErrorPanel />
 
   return (
     <Modal>
       <div>
-        <h3>Generation</h3>
-        <div>Status: {status}</div>
+        <h3>Analyzing your document and creating questions...</h3>
+        <div>Status: {status === 'running' ? 'in progress' : status}</div>
       </div>
     </Modal>
   )

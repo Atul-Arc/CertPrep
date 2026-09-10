@@ -33,6 +33,8 @@ export async function generateExam(text: string, questionCount: number) {
     // Classify errors
     if (err instanceof ZodError) {
       gen.setErrorType('validation')
+    } else if (/timed out|timeout|abort/i.test(msg)) {
+      gen.setErrorType('timeout')
     } else if (/429|rate limit|rate-limit/i.test(msg)) {
       gen.setErrorType('rate')
     } else if (/502|503|504|5\d{2}/i.test(msg)) {

@@ -17,10 +17,32 @@ export default function ValidationErrorPanel() {
     return new Promise((res) => setTimeout(res, ms))
   }
 
+  const headingByType: Record<string, string> = {
+    validation: 'Validation Error',
+    network: 'Network Error',
+    rate: 'Rate Limit Reached',
+    server: 'Provider Error',
+    timeout: 'Request Timed Out',
+    unknown: 'Generation Failed',
+  }
+
+  const guidanceByType: Record<string, string> = {
+    validation: 'The AI response format did not match the expected schema. Try regenerating the exam.',
+    network: 'Could not reach the AI provider. Check connectivity and try again.',
+    rate: 'The provider rate limit was reached. Wait a moment, then retry with backoff.',
+    server: 'The AI provider returned a server error. Retry shortly.',
+    timeout: 'The request took too long. Retry with a smaller file or fewer questions.',
+    unknown: 'An unexpected error occurred. Retry generation.',
+  }
+
+  const heading = headingByType[errorType ?? 'unknown'] ?? headingByType.unknown
+  const guidance = guidanceByType[errorType ?? 'unknown'] ?? guidanceByType.unknown
+
   return (
     <Modal>
       <div>
-        <h3>Validation Error</h3>
+        <h3>{heading}</h3>
+        <p style={{ marginTop: 0, color: 'var(--muted)', fontSize: '0.9rem' }}>{guidance}</p>
         <div style={{ color: 'crimson', whiteSpace: 'pre-wrap' }}>{error}</div>
         <div style={{ marginTop: 12, display: 'flex', gap: 8 }}>
           <button onClick={() => setStatus('idle')}>Close</button>

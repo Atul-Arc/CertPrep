@@ -18,10 +18,21 @@ export const QuestionSchemaWithChecks = QuestionSchema.superRefine((obj, ctx) =>
   }
 })
 
-export const AiExamSchema = z.object({
-  title: z.string(),
-  questionCount: z.number().int().positive(),
-  questions: z.array(QuestionSchemaWithChecks).min(1),
-})
+export const AiExamSchema = z
+  .object({
+    title: z.string(),
+    questionCount: z.number().int().positive(),
+    questions: z.array(QuestionSchemaWithChecks).min(1),
+  })
+  .superRefine((obj, ctx) => {
+    const expected = obj.questionCount
+    const actual = obj.questions?.length ?? 0
+    if (expected !== actual) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: `questionCount ${expected} does not match number of questions ${actual}`,
+      })
+    }
+  })
 
 export type AiExam = z.infer<typeof AiExamSchema>

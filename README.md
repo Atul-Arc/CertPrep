@@ -57,6 +57,12 @@ See [.env.example](.env.example) for all variables and descriptions.
 | `VITE_AI_MODEL` | No | Model name (default: `gpt-4o-mini`) |
 | `VITE_AI_TIMEOUT_MS` | No | Request timeout ms (default: `30000`) |
 
+Additional optional variables:
+
+| `VITE_AI_MAX_TOKENS` | No | Provider `max_tokens` value used for generation (default: `8000`) |
+| `VITE_AI_MAX_INPUT_CHARS` | No | Maximum characters of extracted text sent to the provider (default: `12000`) |
+| `VITE_MAX_UPLOAD_BYTES` | No | Maximum allowed upload size in bytes for PDFs (default: `921600` / 900 KB, i.e., less than 1 MB) |
+
 Leave `VITE_AI_ENDPOINT` empty to use the built-in mock adapter — no API key needed.
 
 ## Swapping or Adding AI Providers
@@ -103,4 +109,46 @@ A feature is complete when all of the following pass:
 ## Privacy
 
 No user data (PDF content or generated questions) is sent to any service other than the configured AI provider endpoint. No data is persisted beyond the current browser session.
+
+## Spec-Kit & Conformance
+
+This repository follows a spec-driven workflow (Spec-Kit). Feature intent, implementation plans, and task checklists live under the `specs/` folder and are the single source of truth for feature-level decisions. Key artifacts:
+
+- Feature specification: [specs/001-cretprep-mock-exams/spec.md](specs/001-cretprep-mock-exams/spec.md)
+- Implementation plan: [specs/001-cretprep-mock-exams/plan.md](specs/001-cretprep-mock-exams/plan.md)
+- Task list (convergence phases appended here): [specs/001-cretprep-mock-exams/tasks.md](specs/001-cretprep-mock-exams/tasks.md)
+- Agent contracts: [specs/001-cretprep-mock-exams/agents.md](specs/001-cretprep-mock-exams/agents.md)
+- Project constitution / governance: [.specify/memory/constitution.md](.specify/memory/constitution.md)
+
+Developer helpers:
+
+- Locate the active feature directory and docs (used by Spec-Kit scripts):
+
+```powershell
+node .\.specify\scripts\get-prereqs.js --json -RequireTasks -IncludeTasks
+```
+
+- The Spec-Kit workflow uses small scripts under `.specify/scripts/` for preparing and validating feature artifacts. When a convergence or implement step is required, follow the feature `tasks.md` checklists and update artifacts under `specs/` accordingly.
+
+## CertPrep: Features & Notes
+
+CertPrep implements an AI-first, frontend-only mock exam generator. Highlights:
+
+- Upload a PDF (processed client-side) and generate a configurable number of multiple-choice questions.
+- Exam UI: single-question presentation, immediate evaluation, answer locking, and per-question review on the results page.
+- Strict AI response validation with Zod schemas in `src/utils/schema/aiResponse.ts` to ensure safe, predictable exam data.
+- Provider abstraction in `src/services/ai/` lets you switch between a mock adapter and real providers via environment variables.
+
+Where to look for implementation pieces:
+
+- State & store: `src/state/`
+- PDF extraction: `src/services/pdf/` (`pdfWorker.ts`)
+- AI adapters & prompt builder: `src/services/ai/`
+- Validation schemas: `src/utils/schema/aiResponse.ts`
+- Feature-level docs: `specs/001-cretprep-mock-exams/`
+
+If you are iterating on validation or agent contracts, update the matching files under `src/utils/schema/` and `specs/001-cretprep-mock-exams/` and add a convergence task to `tasks.md` when remediation is needed.
+
+---
+
 

@@ -8,6 +8,9 @@ Environment variables (place in `.env` during development):
 - `VITE_AI_ENDPOINT` — Full URL to the AI provider endpoint (if set, the OpenAI adapter will be used).
 - `VITE_AI_MODEL` — Model name, e.g. `gpt-4o-mini`.
 - `VITE_AI_TIMEOUT_MS` — Request timeout in milliseconds.
+- `VITE_AI_MAX_TOKENS` — Max output tokens requested from provider (default: `8000`).
+- `VITE_AI_MAX_INPUT_CHARS` — Max extracted input characters sent to AI (default: `12000`).
+- `VITE_MAX_UPLOAD_BYTES` — Max upload size in bytes (default: `921600` = `900 KB`, less than `1 MB`).
 
 Start development server:
 

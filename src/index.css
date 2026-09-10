@@ -22,9 +22,9 @@ body {
 
 /* Layout helpers */
 .page-container {
-  max-width: 760px;
+  max-width: 980px;
   margin: 0 auto;
-  padding: 32px 24px;
+  padding: 24px 16px;
 }
 
 /* Make app fill viewport so footer stays at bottom */
@@ -80,7 +80,13 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 24px;
+  padding: 16px;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 16px 12px;
+  }
 }
 
 /* Form elements */

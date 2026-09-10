@@ -35,7 +35,7 @@ export function buildExamMessages(text: string, questionCount: number): { system
 
   const user = [
     `Generate exactly ${questionCount} scenario-based multiple-choice questions that apply concepts from the following source material to realistic, real-world situations. Use the source as background and reference but synthesize or adapt examples—do not copy long verbatim passages.`,
-    `Requirements:\n- Each question must be focused and test application of knowledge.\n- Provide exactly 4 options per question.\n- Mark the correct option with the zero-based \"correctIndex\" and include a brief explanation for the correct answer.`,
+    `Requirements:\n- Each question must be focused and test application of knowledge.\n- Provide exactly 4 options per question.\n- Mark the correct option with the zero-based "correctIndex" and include a brief explanation for the correct answer.`,
     `Source material:\n\n${source}`,
   ].join('\n\n')
 
